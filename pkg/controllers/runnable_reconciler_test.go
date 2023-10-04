@@ -256,7 +256,7 @@ var _ = Describe("Reconcile", func() {
 				_, obj, hndl, _ := stampedTracker.WatchArgsForCall(0)
 
 				Expect(obj).To(Equal(stampedObject))
-				Expect(hndl).To(Equal(&handler.EnqueueRequestForOwner{OwnerType: &v1alpha1.Runnable{}}))
+				Expect(hndl).To(Equal(handler.EnqueueRequestForOwner(repo.GetScheme(), repo.GetRESTMapper(), &v1alpha1.Runnable{})))
 			})
 		})
 

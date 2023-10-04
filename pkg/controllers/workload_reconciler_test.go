@@ -478,11 +478,11 @@ var _ = Describe("WorkloadReconciler", func() {
 
 			_, obj, hndl, _ := stampedTracker.WatchArgsForCall(0)
 			gvks = append(gvks, obj.GetObjectKind().GroupVersionKind())
-			Expect(hndl).To(Equal(&handler.EnqueueRequestForOwner{OwnerType: &v1alpha1.Workload{}}))
+			Expect(hndl).To(Equal(handler.EnqueueRequestForOwner(repo.GetScheme(), repo.GetRESTMapper(), &v1alpha1.Workload{})))
 
 			_, obj, hndl, _ = stampedTracker.WatchArgsForCall(1)
 			gvks = append(gvks, obj.GetObjectKind().GroupVersionKind())
-			Expect(hndl).To(Equal(&handler.EnqueueRequestForOwner{OwnerType: &v1alpha1.Workload{}}))
+			Expect(hndl).To(Equal(handler.EnqueueRequestForOwner(repo.GetScheme(), repo.GetRESTMapper(), &v1alpha1.Workload{})))
 
 			currentStatuses := resourceStatuses.GetCurrent()
 			Expect(currentStatuses).To(HaveLen(2))

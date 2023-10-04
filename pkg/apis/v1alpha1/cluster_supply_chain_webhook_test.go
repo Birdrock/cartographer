@@ -297,13 +297,13 @@ var _ = Describe("Webhook Validation", func() {
 					}
 
 					// Create
-					createErr := supplyChain.ValidateCreate()
+					_, createErr := supplyChain.ValidateCreate()
 
 					// Update
-					updateErr := supplyChain.ValidateUpdate(oldSupplyChain)
+					_, updateErr := supplyChain.ValidateUpdate(oldSupplyChain)
 
 					// Delete
-					deleteErr := supplyChain.ValidateDelete()
+					_, deleteErr := supplyChain.ValidateDelete()
 
 					if happy {
 						Expect(createErr).NotTo(HaveOccurred())
@@ -919,12 +919,12 @@ var _ = Describe("Webhook Validation", func() {
 			})
 
 			It("on create, it does not reject the Resource", func() {
-				err := supplyChain.ValidateCreate()
+				_, err := supplyChain.ValidateCreate()
 				Expect(err).NotTo(HaveOccurred())
 			})
 
 			It("on update, it does not reject the Resource", func() {
-				err := supplyChain.ValidateUpdate(oldSupplyChain)
+				_, err := supplyChain.ValidateUpdate(oldSupplyChain)
 				Expect(err).NotTo(HaveOccurred())
 			})
 

@@ -477,12 +477,12 @@ var _ = Describe("Delivery Validation", func() {
 			})
 
 			It("on create, it does not reject the Resource", func() {
-				err := delivery.ValidateCreate()
+				_, err := delivery.ValidateCreate()
 				Expect(err).NotTo(HaveOccurred())
 			})
 
 			It("on update, it does not reject the Resource", func() {
-				err := delivery.ValidateUpdate(oldDelivery)
+				_, err := delivery.ValidateUpdate(oldDelivery)
 				Expect(err).NotTo(HaveOccurred())
 			})
 

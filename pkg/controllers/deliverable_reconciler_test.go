@@ -476,11 +476,12 @@ var _ = Describe("DeliverableReconciler", func() {
 
 			_, obj, hndl, _ := stampedTracker.WatchArgsForCall(0)
 			gvks = append(gvks, obj.GetObjectKind().GroupVersionKind())
-			Expect(hndl).To(Equal(&handler.EnqueueRequestForOwner{OwnerType: &v1alpha1.Deliverable{}}))
+			_ = handler.EnqueueRequestForOwner(repo.GetScheme(), repo.GetRESTMapper(), &v1alpha1.Deliverable{}, handler.OnlyControllerOwner())
+			Expect(hndl).To(Equal(handler.EnqueueRequestForOwner(repo.GetScheme(), repo.GetRESTMapper(), &v1alpha1.Deliverable{}, handler.OnlyControllerOwner())))
 
 			_, obj, hndl, _ = stampedTracker.WatchArgsForCall(1)
 			gvks = append(gvks, obj.GetObjectKind().GroupVersionKind())
-			Expect(hndl).To(Equal(&handler.EnqueueRequestForOwner{OwnerType: &v1alpha1.Deliverable{}}))
+			Expect(hndl).To(Equal(handler.EnqueueRequestForOwner(repo.GetScheme(), repo.GetRESTMapper(), &v1alpha1.Deliverable{}, handler.OnlyControllerOwner())))
 
 			currentStatuses := resourceStatuses.GetCurrent()
 			Expect(currentStatuses).To(HaveLen(2))

@@ -354,7 +354,7 @@ var _ = Describe("ClusterTemplate", func() {
 							template.Spec.RetentionPolicy = &v1alpha1.RetentionPolicy{}
 						})
 						It("returns a helpful error", func() {
-							err := template.ValidateCreate()
+							_, err := template.ValidateCreate()
 							Expect(err).To(HaveOccurred())
 							Expect(err).To(MatchError("invalid template: if lifecycle is mutable, no retention policy may be set"))
 						})
