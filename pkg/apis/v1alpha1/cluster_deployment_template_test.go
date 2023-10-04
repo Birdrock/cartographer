@@ -178,7 +178,8 @@ var _ = Describe("ClusterDeploymentTemplate", func() {
 			Context("Any template", func() {
 				var anyTemplate *v1alpha1.ClusterDeploymentTemplate
 				It("always succeeds", func() {
-					Expect(anyTemplate.ValidateDelete()).NotTo(HaveOccurred())
+					_, err := anyTemplate.ValidateDelete()
+					Expect(err).NotTo(HaveOccurred())
 				})
 			})
 		})
