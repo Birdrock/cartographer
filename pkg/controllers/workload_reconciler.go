@@ -68,6 +68,8 @@ type WorkloadReconciler struct {
 	Scheme                  *runtime.Scheme
 }
 
+//counterfeiter:generate k8s.io/apimachinery/pkg/api/meta.RESTMapper
+
 func (r *WorkloadReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	log := logr.FromContextOrDiscard(ctx)
 	log.Info("started")
@@ -422,6 +424,7 @@ func (r *WorkloadReconciler) SetupWithManager(mgr ctrl.Manager, concurrency int)
 	}
 	r.TokenManager = satoken.NewManager(clientSet, mgr.GetLogger().WithName("service-account-token-manager"), nil)
 	r.RESTMapper = mgr.GetRESTMapper()
+	r.Scheme = mgr.GetScheme()
 
 	r.EventRecorder = mgr.GetEventRecorderFor("Workload")
 	r.Repo = repository.NewRepository(

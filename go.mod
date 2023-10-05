@@ -17,7 +17,7 @@ require (
 	k8s.io/apiserver v0.28.2
 	k8s.io/client-go v0.28.2
 	k8s.io/utils v0.0.0-20230726121419-3b25d923346b
-	sigs.k8s.io/cluster-api v1.4.7
+	sigs.k8s.io/cluster-api v1.5.2
 	sigs.k8s.io/controller-runtime v0.16.2
 	sigs.k8s.io/controller-tools v0.10.0
 	sigs.k8s.io/yaml v1.3.0
@@ -36,6 +36,7 @@ require (
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/blang/semver v3.5.1+incompatible // indirect
+	github.com/blang/semver/v4 v4.0.0 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/emicklei/go-restful/v3 v3.11.0 // indirect
